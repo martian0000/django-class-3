@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 
 {% block content %}
 <div class="single-product">
@@ -24,18 +25,13 @@
             </div>
             <div id="carousel" class="flexslider">
               <ul class="slides">
+                {% for item in product.imagegallery_set.all %}
                 <li>
-                  <img src="assets/images/thumb-01.jpg" />
+                  {% thumbnail item.image "150x150" crop="center" as im %}
+                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                  {% endthumbnail %}
                 </li>
-                <li>
-                  <img src="assets/images/thumb-02.jpg" />
-                </li>
-                <li>
-                  <img src="assets/images/thumb-03.jpg" />
-                </li>
-                <li>
-                  <img src="assets/images/thumb-04.jpg" />
-                </li>
+                {% endfor %}
                 <!-- items mirrored twice, total of 12 -->
               </ul>
             </div>
