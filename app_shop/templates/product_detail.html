@@ -42,14 +42,15 @@
             <h4 id="product-name">{{ product.name }}</h4>
             <h6 id="product-price">{{ product.price }} $</h6>
             <p>{{ product.description }}</p>
-            <span>{{ product.quantity }}</span>
+            <span id="quantity-limitation">{{ product.quantity }}</span>
             <label for="quantity">Quantity:</label>
             <input name="quantity" type="quantity" class="quantity-text" id="quantity" 
                 onfocus="if(this.value == '1') { this.value = ''; }" 
                 onBlur="if(this.value == '') { this.value = '1';}"
                 value="1">
-            <input id="order-now" class="button" value="Order Now!">
+                <input id="order-now" class="button" value="Order Now!">
             <div class="down-content">
+              <span class="quantity-error-message" style="display: none">Invalid quantity!</span>
               <div class="categories">
                 <h6>Category:
                   <span>
@@ -162,15 +163,23 @@
   $(document).ready(function() {
     $('#order-now').on('click', function() {
       quantity = $('#quantity').val()
-      productName = $('#product-name').text()
-      productPrice = $('#product-price').text()
-      data = {
-        'quantity': quantity,
-        'name': productName,
-        'price': productPrice
+      quantity = parseInt(quantity)
+      quantityLimitation = $('#quantity-limitation').text()
+      quantityLimitation = parseInt(quantityLimitation)
+      if (quantity > quantityLimitation) {
+        $('#quantity').addClass('quantity-error')
+        $('.quantity-error-message').fadeIn()
+      } else {
+        productName = $('#product-name').text()
+        productPrice = $('#product-price').text()
+        data = {
+          'quantity': quantity,
+          'name': productName,
+          'price': productPrice
+        }
+        stringified_data = JSON.stringify(data)
+        localStorage.setItem("{{ product.id }}", stringified_data)
       }
-      stringified_data = JSON.stringify(data)
-      localStorage.setItem("{{ product.id }}", stringified_data)
     })
   })
 </script>

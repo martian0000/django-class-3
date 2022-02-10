@@ -1,4 +1,6 @@
-/* #navbarResponsive {
-    width: 59%;
-    left: 48%;
-} */
+.quantity-error { 
+    border-color: #dc3545 !important;
+}
+.quantity-error-message { 
+    color: #dc3545 !important;
+}
