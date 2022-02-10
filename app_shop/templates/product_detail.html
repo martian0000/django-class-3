@@ -39,18 +39,16 @@
         </div>
         <div class="col-md-6">
           <div class="right-content">
-            <h4>{{ product.name }}</h4>
-            <h6>{{ product.price }}</h6>
+            <h4 id="product-name">{{ product.name }}</h4>
+            <h6 id="product-price">{{ product.price }} $</h6>
             <p>{{ product.description }}</p>
             <span>{{ product.quantity }}</span>
-            <form action="" method="get">
-              <label for="quantity">Quantity:</label>
-              <input name="quantity" type="quantity" class="quantity-text" id="quantity" 
-                  onfocus="if(this.value == '1') { this.value = ''; }" 
-                  onBlur="if(this.value == '') { this.value = '1';}"
-                  value="1">
-              <input type="submit" class="button" value="Order Now!">
-            </form>
+            <label for="quantity">Quantity:</label>
+            <input name="quantity" type="quantity" class="quantity-text" id="quantity" 
+                onfocus="if(this.value == '1') { this.value = ''; }" 
+                onBlur="if(this.value == '') { this.value = '1';}"
+                value="1">
+            <input id="order-now" class="button" value="Order Now!">
             <div class="down-content">
               <div class="categories">
                 <h6>Category:
@@ -157,3 +155,23 @@
 {% endcomment %}
 
 {% endblock content %}
+
+
+{% block extra_js %}
+<script>
+  $(document).ready(function() {
+    $('#order-now').on('click', function() {
+      quantity = $('#quantity').val()
+      productName = $('#product-name').text()
+      productPrice = $('#product-price').text()
+      data = {
+        'quantity': quantity,
+        'name': productName,
+        'price': productPrice
+      }
+      stringified_data = JSON.stringify(data)
+      localStorage.setItem("{{ product.id }}", stringified_data)
+    })
+  })
+</script>
+{% endblock extra_js %}

@@ -26,3 +26,5 @@ def about(request):
 def contact(request):
     return render(request, 'contact.html')
 
+def basket(request):
+    return render(request, 'basket.html')

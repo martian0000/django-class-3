@@ -22,8 +22,9 @@ from app_shop import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('<int:pk>/', views.product_detail),
+    path('<int:pk>/', views.product_detail, name='product-detail'),
     path('products/', views.product_list, name='product-list'),
+    path('basket/', views.basket, name='basket'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
