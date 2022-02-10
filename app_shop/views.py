@@ -19,3 +19,10 @@ def product_list(request):
         'product_list': Product.objects.all()
     }
     return render(request, 'product_list.html', ctx)
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
