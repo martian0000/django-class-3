@@ -21,8 +21,10 @@ from app_shop import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', views.home, name='home'),
     path('<int:pk>/', views.product_detail),
-    path('products/', views.product_list),
+    path('products/', views.product_list, name='product-list'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
