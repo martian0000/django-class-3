@@ -31,13 +31,14 @@ ALLOWED_HOSTS = ['127.0.0.1','wdwdwqd.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'app_library',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app_shop',
+    'app_library',
 ]
 
 MIDDLEWARE = [
@@ -119,7 +120,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-print('FFFF', BASE_DIR)
 MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
