@@ -27,10 +27,10 @@
 
       <div class="row posts">
         {% for product in product_list %}
-          <div id="1" class="item new col-md-4">
-            <a href="single-product.html">
+          <div id="{{ product.id }}" class="item new col-md-4">
+            <a href="{{ product.get_absolute_url }}">
               <div class="featured-item">
-                <img src="{{ product.imagegallery_set.first.image.url }}" alt="">
+                <img src="{{ product.imagegallery_set.first.image.url }}" alt="{{ product.title }}">
                 <h4>{{ product.name }}</h4>
                 <h6>{{ product.price }}</h6>
               </div>

@@ -3,6 +3,7 @@ from itertools import product
 from os import name
 from pydoc import describe
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Product(models.Model):
@@ -15,6 +16,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        # return f'/{self.id}/'
+        return reverse('product-detail', args=(self.id, ))
     
 class Tag(models.Model):
     name = models.CharField(max_length=120)

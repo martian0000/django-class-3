@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mx-auto" style="width: 70%;">
+  <table class="table table-hover">
+    <caption>Product you want to purchase</caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+      </tr>
+    </thead>
+    <tbody id="basket-tbody">
+    </tbody>
+  </table>
+  <button id="clear-basket" type="button" class="btn btn-outline-danger">Clear basket</button>
+</div>
+{% endblock content %}
+
+
+{% block extra_js %}
+<script>
+  $(document).ready(function() {
+    res = ''
+    Object.entries(localStorage).map(function (obj, index) {
+      key = obj[0]
+      value = obj[1]
+      product = JSON.parse(value)
+      console.log(product)
+      res += `
+      <tr>
+        <th scope="row">${index}</th>
+        <td>${product.name}</td>
+        <td>${product.price}</td>
+        <td>${product.quantity}</td>
+      </tr>
+      `
+    })
+    $('#basket-tbody').html(res)
+
+    $('#clear-basket').on('click', function() {
+      localStorage.clear();
+      $('#basket-tbody').html('')
+      $(this).addClass('disabled')
+    })
+  })
+</script>
+{% endblock extra_js %}

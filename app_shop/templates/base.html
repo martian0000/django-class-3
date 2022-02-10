@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{% static 'css/tooplate-main.css' %}">
     <link rel="stylesheet" href="{% static 'css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'css/flex-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 <!--
 Tooplate 2114 Pixie
 https://www.tooplate.com/view/2114-pixie
@@ -56,6 +57,9 @@ https://www.tooplate.com/view/2114-pixie
             </li>
             <li class="nav-item {% if request.path == '/products/' %}active{% endif %}">
               <a class="nav-link" href="{% url 'product-list' %}">Products</a>
+            </li>
+            <li class="nav-item {% if request.path == '/basket/' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'basket' %}">Basket</a>
             </li>
             <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
               <a class="nav-link" href="{% url 'about' %}">About Us</a>
@@ -212,6 +216,7 @@ https://www.tooplate.com/view/2114-pixie
       }
     </script>
 
+    {% block extra_js %}{% endblock extra_js %}
 
   </body>
 
